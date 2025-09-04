@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       }
   
       // *** REPLACE THIS WITH YOUR ACTUAL APPS SCRIPT WEB APP URL ***
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjwyt9c6pG-K33zeZcK5sfVEQDGNgc-v4PppvXdwgreemhvhESqzw6-Snr0IGPKGYP/exec";
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyt3cAI2AUMGxVHsdgMdBD6QmUPhhHyPm5P_1CklKMA-7yzX7Nw0jskROKAVtvNmLbG/exec";
   
       // Forward the request server->server (no CORS problem)
       const gsRes = await fetch(GOOGLE_SCRIPT_URL, {
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
       res.setHeader("Access-Control-Allow-Origin", "*"); // optional
       return res.status(200).json({
         status: "success",
-        message: parsed.message || "Request saved to Google Sheet",
+        message: parsed.message || "ጥያቄው ለ IT ባለሙያ ተልኳል",
         details: parsed
       });
   
