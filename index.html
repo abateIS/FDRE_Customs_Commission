@@ -36,7 +36,7 @@
       <input id="fullname" name="fullname" required placeholder="ሙሉ ስም">
 
       <label for="date">ቀን</label>
-      <input id="date" name="date" type="date" required>
+      <input id="date" name="date" type="text" required>
 
       <label for="department">የሥራ ክፍል</label>
       <input id="department" name="department" required placeholder="የሥራ ክፍል">
@@ -68,7 +68,7 @@
       e.preventDefault();
       msg.style.display = 'none';
       submitBtn.disabled = true;
-      submitBtn.innerText = 'ላእለኩ...';
+      submitBtn.innerText = 'loading...';
 
       const data = {
         fullname: document.getElementById('fullname').value.trim(),
