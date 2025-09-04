@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Maintenance Request - FDRE Customs Commission Hawassa Branch</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e8ff);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background: #003366;
+      color: white;
+    }
+
+    header img {
+      width: 80px;
+      height: auto;
+    }
+
+    .header-text {
+      text-align: right;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header-text h2 {
+      margin: 5px 0 0;
+      font-size: 16px;
+      font-weight: normal;
+      color: #cfdfff;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #003366;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus {
+      border: 1px solid #003366;
+      outline: none;
+    }
+
+    button {
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #0055aa;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="gumu.jpg" alt="Customs Commission Logo">
+    <div class="header-text">
+      <h1>FDRE Customs Commission</h1>
+      <h2>Hawassa Branch</h2>
+    </div>
+  </header>
+
+  <div class="form-container">
+    <h3>የጥገና እና ድጋፍ መጠየቂያ ቅፅ</h3>
+    <form id="maintenanceForm">
+      <label for="fullname">የአገልግሎት ፈላጊ ሙሉ ስም</label>
+      <input type="text" id="fullname" name="fullname" placeholder="ሙሉ ስም" required>
+
+      <label for="date">ቀን</label>
+      <input type="text" id="date" name="date" required>
+
+      <label for="department">የሥራ ክፍል</label>
+      <input type="text" id="department" name="department" placeholder="የሥራ ክፍል" required>
+
+      <label for="type">የፈለጉትን የጥገና ወይም የድጋፍ አይነት ቀስቱን ነክተው ይምረጡ</label>
+      <select id="type" name="type" required>
+        <option value="" disabled selected>የድጋፍ አይነት</option>
+        <option value="Printer Problem">Printer </option>
+        <option value="System Issue">System </option>
+        <option value="Network Issue">Network </option>
+        <option value="Computer Power">Computer Power</option>
+        <option value="Other">ሌላ</option>
+      </select>
+
+      <button type="submit">ጥያቄውን  ይለኩ</button>
+    </form>
+    <p class="message" id="successMessage">✅ ጥያቄው ለ IT ባለሙያ ተልኳል!</p>
+  </div>
+
+  <footer>
+    &copy; 2025 FDRE Customs Commission - Hawassa Branch. All rights reserved.
+  </footer>
+
+  <script>
+    const form = document.getElementById("maintenanceForm");
+    const successMessage = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        fullname: document.getElementById("fullname").value,
+        date: document.getElementById("date").value,
+        department: document.getElementById("department").value,
+        type: document.getElementById("type").value,
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbzKNIB4V86QV1vB6f18rpAwK1U33T38uaUfD_G_fIKuPvRaKsQiM3gL6Qi1dzpwEYYS/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(response => {
+        if(response.result === "success") {
+          successMessage.style.display = "block";
+          form.reset();
+        }
+      })
+      .catch(error => console.error("Error!", error));
+    });
+  </script>
+</body>
+</html>
