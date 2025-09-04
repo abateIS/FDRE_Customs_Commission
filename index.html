@@ -137,16 +137,16 @@
       <label for="type">የፈለጉትን የጥገና ወይም የድጋፍ አይነት ቀስቱን ነክተው ይምረጡ</label>
       <select id="type" name="type" required>
         <option value="" disabled selected>የድጋፍ አይነት</option>
-        <option value="Printer Problem">Printer </option>
-        <option value="System Issue">System </option>
-        <option value="Network Issue">Network </option>
+        <option value="Printer Problem">Printer</option>
+        <option value="System Issue">System</option>
+        <option value="Network Issue">Network</option>
         <option value="Computer Power">Computer Power</option>
         <option value="Other">ሌላ</option>
       </select>
 
-      <button type="submit">ጥያቄውን  ይለኩ</button>
+      <button type="submit">ጥያቄውን ይላኩ</button>
     </form>
-    <p class="message" id="successMessage">✅ ጥያቄው ለ IT ባለሙያ ተልኳል!</p>
+    <p class="message" id="successMessage"></p>
   </div>
 
   <footer>
@@ -169,17 +169,23 @@
 
       fetch("https://script.google.com/macros/s/AKfycbzKNIB4V86QV1vB6f18rpAwK1U33T38uaUfD_G_fIKuPvRaKsQiM3gL6Qi1dzpwEYYS/exec", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
       })
-      .then(res => res.json())
-      .then(response => {
-        if(response.result === "success") {
-          successMessage.style.display = "block";
-          form.reset();
-        }
+      .then((res) => res.json())
+      .then((result) => {
+        successMessage.style.display = "block";
+        successMessage.style.color = "green";
+        successMessage.innerText = "✅ " + result.message;
+        form.reset();
       })
-      .catch(error => console.error("Error!", error));
+      .catch((error) => {
+        successMessage.style.display = "block";
+        successMessage.style.color = "red";
+        successMessage.innerText = "❌ Error: " + error;
+      });
     });
   </script>
 </body>
