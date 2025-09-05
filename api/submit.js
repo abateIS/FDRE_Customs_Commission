@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       }
   
       // *** REPLACE THIS WITH YOUR ACTUAL APPS SCRIPT WEB APP URL ***
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyt3cAI2AUMGxVHsdgMdBD6QmUPhhHyPm5P_1CklKMA-7yzX7Nw0jskROKAVtvNmLbG/exec";
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjEMcOuD-SpcY9IXgGKusi4IVM3MWba0Nv38epkHEc6rrPfc9fxC0hjIGtq-D-pf81/exec";
   
       // Forward the request server->server (no CORS problem)
       const gsRes = await fetch(GOOGLE_SCRIPT_URL, {
